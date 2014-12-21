@@ -1,0 +1,83 @@
+var React = require('react');
+var Router = require('react-router');
+var Route = Router.Route;
+var Routes = Router.Routes;
+var Link = Router.Link;
+
+var data = require('../data_test1.json');
+
+
+var ScheduleBox = React.createClass({
+	render: function() {
+		console.log(this.props);
+		//console.log(this.getParams().studio);
+		return (
+			<div className ="scheduleBox">
+				<h1>Schedule for {this.props.data.studio}</h1>
+				<ScheduleList data={this.props.data.days[0].scheduleItems}/>
+				<ScheduleForm/>
+			</div>		
+		);
+	}
+});
+
+var ScheduleList = React.createClass({
+	render: function() {
+		console.log(this.props.data);
+		var scheduleItems = this.props.data.map(function(scheduleItem) {
+			return (
+					<ScheduleItem course={scheduleItem.name} startTime={scheduleItem.start}>
+						Something Something
+					</ScheduleItem>
+				);
+		});
+		return (
+				<div className="scheduleList">
+					{scheduleItems}
+				</div>
+			);
+	}
+});
+
+var ScheduleForm = React.createClass({
+	render: function() {
+		return (
+			<div>
+				Hello, I am a ScheduleForm!
+			</div>
+		);
+	}
+});
+
+var ScheduleItem = React.createClass({
+	render: function() {
+		return (
+			<div className="scheduleItem">
+				<h2 className="courseTitle">
+					{this.props.course}
+				</h2>
+				{this.props.startTime}
+			</div>
+		);
+	}	
+});
+
+var routes = (
+	<Routes>
+	<Route name='form' path='/' handler={ScheduleForm}>
+	</Route>
+  //<Route name='default' path="/" handler={ScheduleBox}>
+  //</Route>
+  </Routes>
+//  	<Route name='studio' path="/:studio" handler={ScheduleBox}>
+  //	</Route>
+);
+
+//React.render(
+//  <ScheduleBox data={data}/>,
+//  document.getElementById('example')
+//);
+
+Router.run(routes, function (Handler) {
+  React.render(<Handler/>, document.getElementById('example'));
+});

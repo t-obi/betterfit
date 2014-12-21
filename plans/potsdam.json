@@ -1,0 +1,348 @@
+{
+	"studio" : "Potsdam",
+	"days" : [
+		{
+			"day" : "Monday",
+			"scheduleItems" : [
+				{ 
+					"start" : "10:00",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "11:00",
+					"name" : "Rücken"
+				},
+				{ 
+					"start" : "12:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "16:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "16:30",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "17:30",
+					"name" : "Bodybalance"
+				},
+				{ 
+					"start" : "18:30",
+					"name" : "Bodycombat"
+				},
+				{ 
+					"start" : "19:30",
+					"name" : "Bauch Express"
+				},
+				{ 
+					"start" : "20:00",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "21:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "21:30",
+					"name" : "Bauch Express"
+				}
+			]
+		},
+		{
+			"day" : "Tuesday",
+			"scheduleItems" : [
+				{ 
+					"start" : "10:00",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "11:00",
+					"name" : "Rücken"
+				},
+				{ 
+					"start" : "12:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "16:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "16:30",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "17:30",
+					"name" : "Bodybalance"
+				},
+				{ 
+					"start" : "18:30",
+					"name" : "Bodycombat"
+				},
+				{ 
+					"start" : "19:30",
+					"name" : "Bauch Express"
+				},
+				{ 
+					"start" : "20:00",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "21:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "21:30",
+					"name" : "Bauch Express"
+				}
+			]
+		},
+		{
+			"day" : "Wednesday",
+			"scheduleItems" : [
+				{ 
+					"start" : "10:00",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "11:00",
+					"name" : "Rücken"
+				},
+				{ 
+					"start" : "12:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "16:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "16:30",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "17:30",
+					"name" : "Bodybalance"
+				},
+				{ 
+					"start" : "18:30",
+					"name" : "Bodycombat"
+				},
+				{ 
+					"start" : "19:30",
+					"name" : "Bauch Express"
+				},
+				{ 
+					"start" : "20:00",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "21:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "21:30",
+					"name" : "Bauch Express"
+				}
+			]
+		},
+		{
+			"day" : "Thursday",
+			"scheduleItems" : [
+				{ 
+					"start" : "10:00",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "11:00",
+					"name" : "Rücken"
+				},
+				{ 
+					"start" : "12:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "16:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "16:30",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "17:30",
+					"name" : "Bodybalance"
+				},
+				{ 
+					"start" : "18:30",
+					"name" : "Bodycombat"
+				},
+				{ 
+					"start" : "19:30",
+					"name" : "Bauch Express"
+				},
+				{ 
+					"start" : "20:00",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "21:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "21:30",
+					"name" : "Bauch Express"
+				}
+			]
+		},
+		{
+			"day" : "Friday",
+			"scheduleItems" : [
+				{ 
+					"start" : "10:00",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "11:00",
+					"name" : "Rücken"
+				},
+				{ 
+					"start" : "12:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "16:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "16:30",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "17:30",
+					"name" : "Bodybalance"
+				},
+				{ 
+					"start" : "18:30",
+					"name" : "Bodycombat"
+				},
+				{ 
+					"start" : "19:30",
+					"name" : "Bauch Express"
+				},
+				{ 
+					"start" : "20:00",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "21:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "21:30",
+					"name" : "Bauch Express"
+				}
+			]
+		},
+		{
+			"day" : "Saturday",
+			"scheduleItems" : [
+				{ 
+					"start" : "10:00",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "11:00",
+					"name" : "Rücken"
+				},
+				{ 
+					"start" : "12:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "16:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "16:30",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "17:30",
+					"name" : "Bodybalance"
+				},
+				{ 
+					"start" : "18:30",
+					"name" : "Bodycombat"
+				},
+				{ 
+					"start" : "19:30",
+					"name" : "Bauch Express"
+				},
+				{ 
+					"start" : "20:00",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "21:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "21:30",
+					"name" : "Bauch Express"
+				}
+			]
+		},
+		{
+			"day" : "Sunday",
+			"scheduleItems" : [
+				{ 
+					"start" : "10:00",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "11:00",
+					"name" : "Rücken"
+				},
+				{ 
+					"start" : "12:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "16:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "16:30",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "17:30",
+					"name" : "Bodybalance"
+				},
+				{ 
+					"start" : "18:30",
+					"name" : "Bodycombat"
+				},
+				{ 
+					"start" : "19:30",
+					"name" : "Bauch Express"
+				},
+				{ 
+					"start" : "20:00",
+					"name" : "Bodypump"
+				},
+				{ 
+					"start" : "21:00",
+					"name" : "Cross"
+				},
+				{ 
+					"start" : "21:30",
+					"name" : "Bauch Express blablub"
+				}
+			]
+		},
+	]
+}
