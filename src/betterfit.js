@@ -178,13 +178,33 @@ var StudioNav = React.createClass({
 
 var App = React.createClass({
   render: function () {
+    var title = 'Hello World';
+    var githubButton = (
+      <IconButton
+        className="github-icon-button"
+        icon="mui-icon-github"
+        href="https://github.com/callemall/material-ui"
+        linkButton={true} />
+    );
+
     return (
       <div>
-      	<StudioNav/>
+        <AppBar
+          className="mui-dark-theme"
+          onMenuIconButtonTouchTap={this._onMenuIconButtonTouchTap}
+          title={title}
+          zDepth={0}>
+          {githubButton}
+        </AppBar>
+        <StudioNav ref="leftNav"/>
         {/* this is the important part */}
         <RouteHandler/>
       </div>
     );
+  },
+  _onMenuIconButtonTouchTap: function() {
+    console.log("hey there!");
+    this.refs.leftNav.toggle();
   }
 });
 
