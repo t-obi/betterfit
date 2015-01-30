@@ -1,4 +1,12 @@
-var React = require('react');
+var React = require('react'),
+	mui = require('material-ui'),
+	RaisedButton = mui.RaisedButton,
+  IconButton = mui.IconButton,
+  AppBar = mui.AppBar;
+
+var injectTapEventPlugin = require('react-tap-event-plugin');
+injectTapEventPlugin();
+
 var Router = require('react-router'),
 	Route = Router.Route,
 	DefaultRoute = Router.DefaultRoute,
