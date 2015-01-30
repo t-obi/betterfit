@@ -159,21 +159,52 @@ var DayNav = React.createClass({
 });
 
 var StudioNav = React.createClass({
-	render: function() {
-		return (
-			<header>
-			  <div className="studioNav">
-			  	<StudioLink studio="charlottenburg"/>
-			  	<StudioLink studio="steglitz"/>
-			  	<StudioLink studio="mitte"/>
-			  	<StudioLink studio="friedrichshain"/>
-			  	<StudioLink studio="tegel"/>
-			  	<StudioLink studio="potsdam"/>
-			  	<StudioLink studio="köpenick"/>
-			  </div>
-			</header>
-		);
-	}
+  mixins: [Router.Navigation, Router.State],
+
+	render: function(){
+    menuItems = [
+      {route: '/studio/charlottenburg', text: 'charlottenburg' },
+      {route: '/studio/steglitz', text: 'steglitz' },
+      {route: '/studio/mitte', text: 'mitte' },
+      {route: '/studio/friedrichshain', text: 'friedrichshain' },
+      {route: '/studio/tegel', text: 'tegel' },
+      {route: '/studio/potsdam', text: 'potsdam' },
+      {route: '/studio/köpenick', text: 'köpenick' }
+    ];
+    return(
+      <mui.LeftNav
+        ref='leftNav'
+        docked={false}
+        menuItems={menuItems}
+        selectedIndex={this._getSelectedIndex()}
+        onChange={this._onLeftNavChange} 
+      />
+    );
+  },
+
+  toggle: function() {
+    this.refs.leftNav.toggle();
+  },
+
+  _getSelectedIndex: function() {
+    var currentItem;
+
+    for (var i = menuItems.length - 1; i >= 0; i--) {
+      currentItem = menuItems[i];
+      if (currentItem.route && this.isActive(currentItem.route)) {
+        return i;
+      }
+    }
+  },
+
+  _onLeftNavChange: function(e, key, payload) {
+    this.transitionTo(payload.route);
+  },
+
+  _onHeaderClick: function() {
+    this.transitionTo('root');
+    this.refs.leftNav.close();
+  }
 });
 
 var App = React.createClass({
