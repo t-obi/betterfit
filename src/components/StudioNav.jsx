@@ -2,13 +2,13 @@ var React = require('react'),
   Router = require('react-router'),
   mui = require('material-ui'),
   menuItems = [
-    {route: '/studio/charlottenburg', text: 'charlottenburg' },
-    {route: '/studio/steglitz', text: 'steglitz' },
-    {route: '/studio/mitte', text: 'mitte' },
-    {route: '/studio/friedrichshain', text: 'friedrichshain' },
-    {route: '/studio/tegel', text: 'tegel' },
-    {route: '/studio/potsdam', text: 'potsdam' },
-    {route: '/studio/köpenick', text: 'köpenick' }
+    {route: '/studio/charlottenburg', text: 'Charlottenburg' },
+    {route: '/studio/steglitz', text: 'Steglitz' },
+    {route: '/studio/mitte', text: 'Mitte' },
+    {route: '/studio/friedrichshain', text: 'Friedrichshain' },
+    {route: '/studio/tegel', text: 'Tegel' },
+    {route: '/studio/potsdam', text: 'Potsdam' },
+    {route: '/studio/köpenick', text: 'Köpenick' }
   ];
 
 var StudioNav = React.createClass({
