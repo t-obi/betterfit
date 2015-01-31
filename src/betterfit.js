@@ -158,8 +158,21 @@ var DayNav = React.createClass({
 });
 
 var App = React.createClass({
+  
+  mixins: [Router.State],
+
   render: function () {
-    var title = 'Hello World';
+
+    var title = 
+      this.isActive('studio', {studioId: 'charlottenburg'}) ? 'Charlottenburg' :
+      this.isActive('studio', {studioId: 'friedrichshain'}) ? 'Friedrichshain' :
+      this.isActive('studio', {studioId: 'tegel'}) ? 'Tegel' :
+      this.isActive('studio', {studioId: 'steglitz'}) ? 'Steglitz' :
+      this.isActive('studio', {studioId: 'mitte'}) ? 'Mitte' :
+      this.isActive('studio', {studioId: 'potsdam'}) ? 'Potsdam' :
+      this.isActive('studio', {studioId: 'köpenick'}) ? 'Köpenick' :
+      'btrFit';
+
     var githubButton = (
       <IconButton
         className="github-icon-button"
