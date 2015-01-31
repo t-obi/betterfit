@@ -2,7 +2,9 @@ var React = require('react'),
 	mui = require('material-ui'),
 	RaisedButton = mui.RaisedButton,
   IconButton = mui.IconButton,
-  AppBar = mui.AppBar;
+  AppBar = mui.AppBar,
+  Tabs = mui.Tabs,
+  Tab = mui.Tab,
   StudioNav = require('./components/StudioNav.jsx');
 
 var injectTapEventPlugin = require('react-tap-event-plugin');
@@ -135,26 +137,54 @@ var DayLink = React.createClass({
 	}
 });
 
+
 var DayNav = React.createClass({
-	mixins: [Router.State],
+	mixins: [Router.Navigation, Router.State],
 	render: function() {
 		return (
-			<header>
-			  <div className="dayNav">
-			  	<DayLink studio={this.getParams().studioId} day="monday"/>
-			  	<DayLink studio={this.getParams().studioId} day="tuesday"/>
-			  	<DayLink studio={this.getParams().studioId} day="wednesday"/>
-			  	<DayLink studio={this.getParams().studioId} day="thursday"/>
-			  	<DayLink studio={this.getParams().studioId} day="friday"/>
-			  	<DayLink studio={this.getParams().studioId} day="saturday"/>
-			  	<DayLink studio={this.getParams().studioId} day="sunday"/>
-
-			  </div>
-			  <RouteHandler/>
-
-			</header>
+      <Tabs>
+        <Tab 
+          label="Monday"
+          route="monday"
+          onActive={this._onActive}
+        />
+        <Tab 
+          label="Tuesday"
+          route="tuesday"
+          onActive={this._onActive}
+        />
+        <Tab 
+          label="Wednesday"
+          route="wednesday"
+          onActive={this._onActive}
+        />
+        <Tab 
+          label="Thursday"
+          route="thursday"
+          onActive={this._onActive}
+        />
+        <Tab 
+          label="Friday"
+          route="friday"
+          onActive={this._onActive}
+        />
+        <Tab 
+          label="Saturday"
+          route="saturday"
+          onActive={this._onActive}
+        />
+        <Tab 
+          label="Sunday"
+          route="sunday"
+          onActive={this._onActive}
+        />
+      </Tabs>
 		);
-	}
+	},
+
+  _onActive: function(tab){ 
+    this.transitionTo("/studio/" + this.props.studio + "/day/" + tab.props.route); 
+  }
 });
 
 var App = React.createClass({
