@@ -97,16 +97,14 @@ var Day = React.createClass({
 });
 
 var Studio = React.createClass({
-	mixins: [ Router.State ],
-	render: function() {
-		console.log(this.getParams());
-		return (
-			<div>
-			 Hello {this.getParams().studioId}!
-			 <DayNav/>
-			</div>
-		);
-	}
+  mixins: [ Router.State ],
+  render: function() {
+    return (
+      <div className="mui-app-content-canvas">
+        <DayNav studio={this.getParams().studioId}/>
+      </div>
+    );
+  }
 });
 
 var Dashboard = React.createClass({
@@ -171,18 +169,20 @@ var App = React.createClass({
     );
 
     return (
-      <div>
+      <mui.AppCanvas predefinedLayout={1}>
         <AppBar
           className="mui-dark-theme"
           onMenuIconButtonTouchTap={this._onMenuIconButtonTouchTap}
           title={title}
-          zDepth={0}>
+          zDepth={1}>
           {githubButton}
         </AppBar>
+        
         <StudioNav ref="leftNav"/>
-        {/* this is the important part */}
+        {/* this is the important part */}        
         <RouteHandler/>
-      </div>
+
+      </mui.AppCanvas>
     );
   },
   _onMenuIconButtonTouchTap: function() {
