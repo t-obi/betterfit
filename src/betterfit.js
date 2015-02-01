@@ -3,9 +3,8 @@ var React = require('react'),
 	RaisedButton = mui.RaisedButton,
   IconButton = mui.IconButton,
   AppBar = mui.AppBar,
-  Tabs = mui.Tabs,
-  Tab = mui.Tab,
-  StudioNav = require('./components/StudioNav.jsx');
+  StudioNav = require('./components/StudioNav.jsx'),
+  Studio = require('./components/Studio.jsx');
 
 var injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
@@ -25,30 +24,6 @@ data.mitte = require('../plans/mitte.json');
 data.potsdam = require('../plans/potsdam.json');
 data.köpenick = require('../plans/köpenick.json');
 
-var ScheduleBox = React.createClass({
-	render: function() {
-		console.log(this.props);
-		//console.log(this.getParams().studio);
-		return (
-			<div className ="scheduleBox">
-				<h1>Schedule for {this.props.data.studio}</h1>
-				<ScheduleList data={this.props.data.days[0].scheduleItems}/>
-			</div>		
-		);
-	}
-});
-
-var ScheduleForm = React.createClass({
-	render: function() {
-		return (
-			<div>
-				Hello, I am a ScheduleForm!
-			</div>
-		);
-	}
-});
-
-
 var ScheduleList = React.createClass({
 	render: function() {
 		console.log(this.props.data);
@@ -66,6 +41,7 @@ var ScheduleList = React.createClass({
 			);
 	}
 });
+
 var ScheduleItem = React.createClass({
 	render: function() {
 		return (
@@ -98,17 +74,6 @@ var Day = React.createClass({
 	}
 });
 
-var Studio = React.createClass({
-  mixins: [ Router.State ],
-  render: function() {
-    return (
-      <div className="mui-app-content-canvas">
-        <DayNav studio={this.getParams().studioId}/>
-      </div>
-    );
-  }
-});
-
 var Dashboard = React.createClass({
 	render: function() {
 		return (
@@ -117,74 +82,6 @@ var Dashboard = React.createClass({
 			</div>
 		);
 	}
-});
-
-var StudioLink = React.createClass({
-	render: function() {
-		var target = "/studio/" + this.props.studio;
-		return (
-			<span><Link to={target}>{this.props.studio}</Link></span>
-		);
-	}
-});
-
-var DayLink = React.createClass({
-	render: function() {
-		var target = "/studio/" + this.props.studio + "/day/" + this.props.day;
-		return (
-			<span><Link to={target}>{this.props.day}</Link></span>
-		);
-	}
-});
-
-
-var DayNav = React.createClass({
-	mixins: [Router.Navigation, Router.State],
-	render: function() {
-		return (
-      <Tabs>
-        <Tab 
-          label="Monday"
-          route="monday"
-          onActive={this._onActive}
-        />
-        <Tab 
-          label="Tuesday"
-          route="tuesday"
-          onActive={this._onActive}
-        />
-        <Tab 
-          label="Wednesday"
-          route="wednesday"
-          onActive={this._onActive}
-        />
-        <Tab 
-          label="Thursday"
-          route="thursday"
-          onActive={this._onActive}
-        />
-        <Tab 
-          label="Friday"
-          route="friday"
-          onActive={this._onActive}
-        />
-        <Tab 
-          label="Saturday"
-          route="saturday"
-          onActive={this._onActive}
-        />
-        <Tab 
-          label="Sunday"
-          route="sunday"
-          onActive={this._onActive}
-        />
-      </Tabs>
-		);
-	},
-
-  _onActive: function(tab){ 
-    this.transitionTo("/studio/" + this.props.studio + "/day/" + tab.props.route); 
-  }
 });
 
 var App = React.createClass({
