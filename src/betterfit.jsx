@@ -1,28 +1,37 @@
+'use strict';
 var React = require('react'),
 	mui = require('material-ui'),
 	RaisedButton = mui.RaisedButton,
   IconButton = mui.IconButton,
   AppBar = mui.AppBar,
   StudioNav = require('./components/StudioNav.jsx'),
-  Studio = require('./components/Studio.jsx');
+  Studio = require('./components/Studio.jsx'),
+  Router = require('react-router');
+
+var PouchDB = require('pouchdb');
+
+window.remoteDB = new PouchDB('http://127.0.0.1:5984/betterfit_test');
+window.localDB = new PouchDB('betterfit_local');
+window.localDB.replicate.from(window.remoteDB);
+window.remoteDB.info().then(function (info) {
+  console.log(info);
+});
+
+
+
+
 
 var injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
 
-var Router = require('react-router'),
-	Route = Router.Route,
-	DefaultRoute = Router.DefaultRoute,
-	RouteHandler = Router.RouteHandler,
-	Link = Router.Link;
-
 var data = {};
-data.charlottenburg = require('../plans/charlottenburg.json');
-data.friedrichshain = require('../plans/friedrichshain.json');
-data.tegel = require('../plans/tegel.json');
-data.steglitz = require('../plans/steglitz.json');
-data.mitte = require('../plans/mitte.json');
-data.potsdam = require('../plans/potsdam.json');
-data.köpenick = require('../plans/köpenick.json');
+//data.charlottenburg = require('json!../plans/charlottenburg.json');
+//data.friedrichshain = require('json!../plans/friedrichshain.json');
+//data.tegel = require('json!../plans/tegel.json');
+//data.steglitz = require('json!../plans/steglitz.json');
+//data.mitte = require('json!../plans/mitte.json');
+//data.potsdam = require('json!../plans/potsdam.json');
+//data.köpenick = require('json!../plans/köpenick.json');
 
 var ScheduleList = React.createClass({
 	render: function() {
@@ -52,24 +61,25 @@ var ScheduleItem = React.createClass({
 				{this.props.startTime}
 			</div>
 		);
-	}	
+	}
 });
 
 var Day = React.createClass({
 	mixins: [ Router.State ],
 	render: function() {
-		console.log("data:");
+		console.log('data:');
 		console.log(data);
 
-		console.log("studioID:" + this.getParams().studioId);
+		console.log('studioID:' + this.getParams().studioId);
 
 		var studio = data[this.getParams().studioId];
 
-		console.log("getting data for studio:");
+		console.log('getting data for studio:');
 		console.log(studio);
 
 		return (
-			<ScheduleBox data={studio}/>
+      <div>good day sir</div>
+			//<ScheduleBox data={studio}/>
 		);
 	}
 });
@@ -78,19 +88,21 @@ var Dashboard = React.createClass({
 	render: function() {
 		return (
 			<div>
-			 Hello Dashboard!
+        Hello Dashboard!
 			</div>
 		);
 	}
 });
 
+
+
 var App = React.createClass({
-  
+
   mixins: [Router.State],
 
   render: function () {
 
-    var title = 
+    var title =
       this.isActive('studio', {studioId: 'charlottenburg'}) ? 'Charlottenburg' :
       this.isActive('studio', {studioId: 'friedrichshain'}) ? 'Friedrichshain' :
       this.isActive('studio', {studioId: 'tegel'}) ? 'Tegel' :
@@ -117,28 +129,28 @@ var App = React.createClass({
           zDepth={1}>
           {githubButton}
         </AppBar>
-        
+
         <StudioNav ref="leftNav"/>
-        {/* this is the important part */}        
-        <RouteHandler/>
+        {}
+        <Router.RouteHandler/>
 
       </mui.AppCanvas>
     );
   },
   _onMenuIconButtonTouchTap: function() {
-    console.log("hey there!");
+    console.log('hey there!');
     this.refs.leftNav.toggle();
   }
 });
 
 var routes = (
-  <Route name="app" path="/" handler={App}>
-  	<Route name="studio" path="studio/:studioId" handler={Studio}>
-  		<Route name="day" path="day/:dayOfWeek" handler={Day}/>
-  	</Route>
-  	<Route name="test" path="/test" handler={Day}/>
-    <DefaultRoute handler={Dashboard}/>
-  </Route>
+  <Router.Route name='app' path='/' handler={App}>
+    <Router.Route name='studio' path='studio/:studioId' handler={Studio}>
+      <Router.Route name='day' path='day/:dayOfWeek' handler={Day}/>
+    </Router.Route>
+    <Router.Route name='test' path='/test' handler={Day}/>
+    <Router.DefaultRoute handler={Dashboard}/>
+  </Router.Route>
 );
 
 Router.run(routes, function (Handler) {
