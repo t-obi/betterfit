@@ -1,3 +1,5 @@
+'use strict';
+
 var React = require('react'),
   Router = require('react-router'),
   mui = require('material-ui'),
@@ -15,15 +17,17 @@ var StudioNav = React.createClass({
   mixins: [Router.Navigation, Router.State],
 
   render: function(){
-    
-    return(
+
+    var header = <div className="logo" onClick={this._onHeaderClick}>btrFit</div>;
+
+    return (
       <mui.LeftNav
         ref='leftNav'
+        header={header}
         docked={false}
         menuItems={menuItems}
         selectedIndex={this._getSelectedIndex()}
-        onChange={this._onLeftNavChange} 
-      />
+        onChange={this._onLeftNavChange} />
     );
   },
 

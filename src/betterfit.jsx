@@ -6,32 +6,11 @@ var React = require('react'),
   AppBar = mui.AppBar,
   StudioNav = require('./components/StudioNav.jsx'),
   Studio = require('./components/Studio.jsx'),
-  Router = require('react-router');
-
-var PouchDB = require('pouchdb');
-
-window.remoteDB = new PouchDB('http://127.0.0.1:5984/betterfit_test');
-window.localDB = new PouchDB('betterfit_local');
-window.localDB.replicate.from(window.remoteDB);
-window.remoteDB.info().then(function (info) {
-  console.log(info);
-});
-
-
-
-
+  Router = require('react-router'),
+  actions = require('./actions/actions.js');
 
 var injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
-
-var data = {};
-//data.charlottenburg = require('json!../plans/charlottenburg.json');
-//data.friedrichshain = require('json!../plans/friedrichshain.json');
-//data.tegel = require('json!../plans/tegel.json');
-//data.steglitz = require('json!../plans/steglitz.json');
-//data.mitte = require('json!../plans/mitte.json');
-//data.potsdam = require('json!../plans/potsdam.json');
-//data.köpenick = require('json!../plans/köpenick.json');
 
 var ScheduleList = React.createClass({
 	render: function() {
@@ -116,8 +95,7 @@ var App = React.createClass({
       <IconButton
         className="github-icon-button"
         icon="mui-icon-github"
-        href="https://github.com/callemall/material-ui"
-        linkButton={true} />
+        onClick={this.updateData} />
     );
 
     return (
@@ -137,9 +115,18 @@ var App = React.createClass({
       </mui.AppCanvas>
     );
   },
+
   _onMenuIconButtonTouchTap: function() {
     console.log('hey there!');
     this.refs.leftNav.toggle();
+  },
+
+  updateData: function () {
+    console.log('in update-data!');
+    actions.updateAction();
+    console.log('after action call..');
+
+
   }
 });
 

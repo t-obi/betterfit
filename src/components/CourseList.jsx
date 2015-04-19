@@ -3,11 +3,18 @@
 var React = require('react'),
   Router = require('react-router'),
   mui = require('material-ui'),
-  ListItem = require('./ListItem.jsx');
+  ListItem = require('./ListItem.jsx'),
+  Reflux = require('reflux'),
+  dataStore = require('../stores/store.js');
 
 
 var CourseList = React.createClass({
-  mixins: [Router.Navigation, Router.State],
+  mixins: [
+    Router.Navigation,
+    Router.State,
+    Reflux.connect(dataStore, 'counter')
+  ],
+
   render: function() {
     var paperStyle = {
       //padding: '20px',
@@ -31,6 +38,7 @@ var CourseList = React.createClass({
 
       return (
         <div>
+          <div>counter: {this.state.counter}</div>
           {listItems}
         </div>
         );
@@ -57,6 +65,10 @@ var CourseList = React.createClass({
     console.log('courselist mounted!');
     console.log('state:');
     console.log(this.state);
+  },
+
+  onStoreUpdate: function () {
+    console.log('CourseList COmponent: store updated!');
   }
 });
 
