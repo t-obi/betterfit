@@ -12,7 +12,7 @@ var CourseList = React.createClass({
   mixins: [
     Router.Navigation,
     Router.State,
-    Reflux.connect(dataStore, 'counter')
+    Reflux.connect(dataStore, 'data')
   ],
 
   render: function() {
@@ -27,10 +27,11 @@ var CourseList = React.createClass({
       width: '420px',
       textAlign: 'center'
     };
-    console.log('courselist: ');
-    console.log(this.state.courseList);
-    if (this.state.courseList) {
-      var listItems = this.state.courseList.map(function(course) {
+
+    if (this.state.data.plans) {
+      console.log('in courselist render, state plans: ');
+      console.log(this.state.data.plans);
+      var listItems = this.state.data.plans.mitte.map(function(course) {
         return (
           <ListItem title={course} />
           );
@@ -38,7 +39,6 @@ var CourseList = React.createClass({
 
       return (
         <div>
-          <div>counter: {this.state.counter}</div>
           {listItems}
         </div>
         );
@@ -51,25 +51,12 @@ var CourseList = React.createClass({
     }
   },
 
-  getInitialState: function () {
-    console.log('hello initital state');
-
-    var testdata = {
-      courseList: ['one', 'two', 'three', 'four']
-    };
-
-    return testdata;
-  },
-
   componentDidMount: function () {
     console.log('courselist mounted!');
     console.log('state:');
     console.log(this.state);
-  },
-
-  onStoreUpdate: function () {
-    console.log('CourseList COmponent: store updated!');
   }
+
 });
 
 module.exports = CourseList;

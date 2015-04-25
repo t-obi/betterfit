@@ -2,6 +2,7 @@
 
 var Reflux = require('reflux');
 var PouchDB = require('pouchdb');
+var Q = require('q');
 
 var actions = require('../actions/actions.js');
 
@@ -16,7 +17,7 @@ module.exports = Reflux.createStore({
 		console.log(actions);
 		this.localDB.allDocs(
 			{
-				include_docs: true,
+				include_docs: true, //eslint-disable-line
 				descending: true
 			},
 
@@ -30,6 +31,8 @@ module.exports = Reflux.createStore({
 			}
 		);
 		this.i = 0;
+		this.studios = [];
+
 	},
 
 	getInitialState: function () {
@@ -41,16 +44,42 @@ module.exports = Reflux.createStore({
 	onUpdateAction: function () {
 		console.log('onUpdateDB store function');
 
+		var context = this;
+
 		var remoteDB = new PouchDB('http://127.0.0.1:5984/betterfit_test');
-		this.localDB.replicate.from(remoteDB);
-		remoteDB.info().then(function (info) {
-			console.log('updated db with following data:');
-			console.log(info);
+		this.localDB.replicate.from(remoteDB).on('complete', function(info) {
+			console.log('replication done');
+			console.log('processing new db data....');
+
+			var dbQueries = [];
+
+			context.localDB.query('studios/list').then(function (result) {
+				context.studios = result.rows[0].value;
+
+				for (var i = context.studios.length - 1; i >= 0; i--) {
+					var queryString = 'courses/' + context.studios[i].toLowerCase();
+					dbQueries.push(context.localDB.query(queryString));
+				}
+
+				Q.allSettled(dbQueries).then(function (results) {
+					var resultMap = {};
+					for (var j = results.length - 1; j >= 0; j--) {
+						if (results[j].state === 'fulfilled' && results[j].value.rows[0]) {
+							var courses = results[j].value.rows[0].value;
+							var studio = results[j].value.rows[0].key.studio;
+							resultMap[studio] = courses;
+						} else{
+							console.log('promise ' + j + ' is NOT fulfilled or result is empty..');
+						}
+					}
+
+					context.trigger({
+						studios: context.studios,
+						plans: resultMap
+					});
+				});
+			});
 		});
-
-		this.i++;
-		console.log('updated counter: ' + this.i);
-
-		this.trigger({counter: this.i});
 	}
+
 });
